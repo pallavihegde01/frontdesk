@@ -118,8 +118,8 @@ export default function QueuemanagementPage() {
           className="w-full bg-gray-700 text-white rounded px-2 py-1 mb-2"
         />
         <input
-          type="text"
-          placeholder="Arrival Time (e.g. 10:30 AM)"
+          type="time"
+          placeholder="Arrival Time "
           value={newArrival}
           onChange={(e) => setNewArrival(e.target.value)}
           className="w-full bg-gray-700 text-white rounded px-2 py-1 mb-2"
