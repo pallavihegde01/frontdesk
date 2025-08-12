@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Cable } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { login } from "../lib/api";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -18,18 +18,12 @@ const LoginPage = () => {
     setIsPending(true);
 
     try {
-      const res = await axios.post(
-        "http://localhost:5001/api/auth/login",
-        loginData,
-        { withCredentials: true } // if your backend uses cookies
-      );
-
-      console.log("Login success:", res.data);
-      // Redirect after successful login
+      const res = await login(loginData);
+      console.log("Login success:", res);
       navigate("/");
     } catch (err) {
       console.error("Login failed:", err);
-      if (err.response && err.response.data && err.response.data.message) {
+      if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
         setError("Something went wrong. Please try again.");
